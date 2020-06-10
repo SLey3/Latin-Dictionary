@@ -14,5 +14,5 @@ install:
 - pip install -r requirements.txt
 
 script:
-- make test
+- make build
 - echo foo
