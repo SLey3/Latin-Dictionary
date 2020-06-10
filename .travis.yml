@@ -2,6 +2,8 @@
 
 language: python
 
+os: linux
+
 python:
 - 3.8
 
@@ -11,6 +13,6 @@ git:
 install:
 - pip install -r requirements.txt
 
-scripts:
+script:
 - make build
 - echo foo
