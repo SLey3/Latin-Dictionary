@@ -14,8 +14,8 @@ import os
 import platform 
 # Paths
 if platform.system() == 'Windows':
-    picturePath1 = os.path.expanduser(os.getenv('USERPROFILE')) + '\\Desktop\\Latin_app\\Contents\\Pictures\\Logo.png'
-    csvPath = os.path.expanduser(os.getenv('USERPROFILE')) + '\\Desktop\\Latin_app\\Contents\\LatinWordRef.csv'
+    picturePath1 = os.path.expanduser(os.getenv('USERPROFILE')) + '\\Documents\\Latin_app\\Contents\\Pictures\\Logo.png'
+    csvPath = os.path.expanduser(os.getenv('USERPROFILE')) + '\\Documents\\Latin_app\\Contents\\LatinWordRef.csv'
 elif platform.system() == 'Mac':
     picturePath1 = str(Path.home()) + '/Latin_app/Contents/Pictures/Logo.png'
     csvPath = str(Path.home()) + '/Latin_app/Contents/LatinWordRef.csv'
@@ -120,7 +120,12 @@ def wordList(listBox, dictRaw):
     exit_btn.grid(column=2, row=20)  
     word_box.insert(0, "List Pop up deleted") 
     keyboard.remove_hotkey(find_hotkey)
-    find_hotkey = keyboard.add_hotkey('cmd + f', findWord, args=(pop_up, word_box, listBox, reference, dictRaw))
+    if platform.system() == 'Mac':
+        find_hotkey = keyboard.add_hotkey('cmd + f', findWord, args=(pop_up, word_box, listBox, reference, dictRaw))
+    elif platform.system() == 'Windows':
+        find_hotkey = keyboard.add_hotkey('ctrl + f', findWord, args=(pop_up, word_box, listBox, reference, dictRaw))
+    else:
+        find_hotkey = None
     pop_up.update()
 
 def help(Box):
